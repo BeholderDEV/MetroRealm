@@ -5,8 +5,11 @@
  */
 package br.beholder.metrorealm.core;
 
+import br.beholder.csvparser.CSVParser;
 import java.io.File;
+import java.util.Stack;
 import net.sourceforge.jFuzzyLogic.FIS;
+import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 
 /**
@@ -20,6 +23,10 @@ public class Launcher {
      */
     public static void main(String[] args) {
         File file = new File("src/br/beholder/metrorealm/resources/tipper.flc");
+        
+        CSVParser csvp = CSVParser.getInstance();
+        
+        
         System.out.println(file.getAbsolutePath());
         FIS fis = FIS.load(file.getPath(),true);
         
@@ -28,20 +35,7 @@ public class Launcher {
         }
         
         JFuzzyChart.get().chart(fis);
-//
-//        // Set inputs
-//        fis.setVariable("service", 3);
-//        fis.setVariable("food", 7);
-//
-//        // Evaluate
-//        fis.evaluate();
-//
-//        // Show output variable's chart
-//        Variable tip = functionBlock.getVariable("tip");
-//        JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
-
-        // Print ruleSet
-        System.out.println(fis);
+        
     }
     
 }
