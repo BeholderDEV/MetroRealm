@@ -7,31 +7,25 @@ package br.beholder.metrorealm.core;
 
 import br.beholder.csvparser.CSVParser;
 import br.beholder.dataparser.DataParser;
-import static br.beholder.dataparser.DataParser.getInstance;
+import br.beholder.filecontrol.SimpleFileReader;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
-import net.sourceforge.jFuzzyLogic.rule.RuleBlock;
 
 /**
  *
  * @author Alisson
  */
-public class Launcher {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        File file = new File("src/br/beholder/metrorealm/resources/tipper.flc");
-        File input = new File("src/br/beholder/resources/teste.txt");
+public class FuzzyCalculator {
+    public Double calculate(File rules, File input,File custo){
         String data = DataParser.getInstance().efficienceTransform(input);
         List<String> csv = CSVParser.getInstance().getList(data, ",");
-        
-        FIS fis = FIS.load(file.getPath(),true);
+        List<Double> values = new ArrayList<>();
+        Double valorPreco = Double.parseDouble(SimpleFileReader.getInstance().fileToString(custo));
+        FIS fis = FIS.load(rules.getPath(),true);
         
         if (fis == null){
             System.err.println("Eitaaa");
@@ -39,13 +33,21 @@ public class Launcher {
         
         FunctionBlock fb = fis.getFunctionBlock(null);
         for (String dado : csv) {
-            fb.setVariable("custo", 7.66);
+            fb.setVariable("custo", valorPreco);
             fb.setVariable("eficiencia", Integer.parseInt(dado));
             fb.evaluate();
+            fb.getVariable("valeapena").defuzzify();
+            values.add(fb.getVariable("valeapena").getValue());
         }
-                
-        JFuzzyChart.get().chart(fis);
+        Double media=0.0;
+        for (Double value: values) {
+            media+=value;
+        }
+        media = media/(double)values.size();
+        System.out.println("media: "+media);
+        fb.getVariable("valeapena").setValue(media);
         
+        JFuzzyChart.get().chart(fb.getVariable("valeapena"),true);
+        return media;
     }
-    
 }
