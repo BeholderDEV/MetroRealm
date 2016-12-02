@@ -2,22 +2,12 @@ livre
 levemente lento
 livre
 levemente lento
-livre
-levemente lento
-livre
-levemente lento
-livre
-levemente lento
-livre
-levemente lento
-livre
-levemente lento
-livre
 lento
 levemente lento
 livre
 levemente lento
-lento
+livre
+levemente lento
 livre
 levemente lento
 lento
@@ -25,4 +15,14 @@ livre
 levemente lento
 livre
 levemente lento
+livre
+levemente lento
+livre
+levemente lento
+lento
+livre
+levemente lento
+livre
+levemente lento
+lento
 livre
