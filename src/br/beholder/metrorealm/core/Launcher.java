@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplication;
+package br.beholder.metrorealm.core;
 
 import java.io.File;
 import net.sourceforge.jFuzzyLogic.FIS;
@@ -13,14 +13,14 @@ import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
  *
  * @author Alisson
  */
-public class Aplication {
+public class Launcher {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        File file = new File("src/aplication/tipper.flc");
+        File file = new File("src/br/beholder/metrorealm/resources/tipper.flc");
+        System.out.println(file.getAbsolutePath());
         FIS fis = FIS.load(file.getPath(),true);
         
         if (fis == null){
