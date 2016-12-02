@@ -5,9 +5,9 @@
  */
 package br.beholder.csvparser;
 
+import br.beholder.filecontrol.SimpleFileReader;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,23 +32,17 @@ public class CSVParser {
         return csvp;
     }
     
-    private List<String> getList(File f, String separator){
+    public List<String> getList(String f, String separator){
         List<String> list = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(f));
-            StringBuilder sb = new StringBuilder();
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            String[] everything = sb.toString().split(separator);
-            for (String string : everything) {
-                list.add(string);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(CSVParser.class.getName()).log(Level.SEVERE, null, ex);
+        f = f.replaceAll("\n", separator);
+        String[] everything = f.split(separator);
+        for (String string : everything) {
+            list.add(string);
         }
+        
         return list;
+    }
+    public List<String> getList(File f, String separator){
+        return getList(SimpleFileReader.getInstance().fileToString(f), separator);
     }
 }

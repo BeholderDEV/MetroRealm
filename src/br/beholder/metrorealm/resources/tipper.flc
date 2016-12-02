@@ -26,10 +26,10 @@ FUZZIFY eficiencia			// Fuzzify input variable 'food': { 'rancid', 'delicious' }
 END_FUZZIFY
 
 DEFUZZIFY valeapena			// Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
-	TERM recomendado := (0,1) (2,1) (6,0);
-	TERM levementerecomendado := (2,0) (6,1) (10,0);
-        TERM naorecomendado := (6,0) (10,1) (14,0);
-        TERM naovaleapena := (10,0) (14,1)(16,1);
+	TERM recomendado := (0,1) (1,1) (2,0);
+	TERM levementerecomendado := (1,0) (2,1) (3,0);
+        TERM naorecomendado := (2,0) (3,1) (4,0);
+        TERM naovaleapena := (3,0) (4,1)(5,1);
 	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
 	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
 END_DEFUZZIFY
@@ -39,7 +39,26 @@ RULEBLOCK No1
 	ACT : MIN;			// Use 'min' activation method
 	ACCU : MAX;			// Use 'max' accumulation method
 
-	RULE 1 : IF custo IS mb AND eficiencia IS livre THEN valeapena IS sugerido;
+	RULE 1 : IF custo IS mb AND eficiencia IS livre THEN valeapena IS recomendado;
+	RULE 2 : IF custo IS mb AND eficiencia IS levementelento THEN valeapena IS recomendado;
+	RULE 3 : IF custo IS mb AND eficiencia IS lento THEN valeapena IS levementerecomendado;
+	RULE 4 : IF custo IS mb AND eficiencia IS parado THEN valeapena IS naorecomendado;
+
+        RULE 5 : IF custo IS b AND eficiencia IS livre THEN valeapena IS recomendado;
+	RULE 6 : IF custo IS b AND eficiencia IS levementelento THEN valeapena IS levementerecomendado;
+	RULE 7 : IF custo IS b AND eficiencia IS lento THEN valeapena IS levementerecomendado;
+	RULE 8 : IF custo IS b AND eficiencia IS parado THEN valeapena IS naorecomendado;
+        
+        RULE 9 : IF custo IS c AND eficiencia IS livre THEN valeapena IS levementerecomendado;
+	RULE 10 : IF custo IS c AND eficiencia IS levementelento THEN valeapena IS naorecomendado;
+	RULE 11 : IF custo IS c AND eficiencia IS lento THEN valeapena IS naorecomendado;
+	RULE 12 : IF custo IS c AND eficiencia IS parado THEN valeapena IS naovaleapena;
+
+        RULE 13 : IF custo IS mc AND eficiencia IS livre THEN valeapena IS levementerecomendado;
+	RULE 14 : IF custo IS mc AND eficiencia IS levementelento THEN valeapena IS naorecomendado;
+	RULE 15 : IF custo IS mc AND eficiencia IS lento THEN valeapena IS naovaleapena;
+	RULE 16 : IF custo IS mc AND eficiencia IS parado THEN valeapena IS naovaleapena;
+
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
