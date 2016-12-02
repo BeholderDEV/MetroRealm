@@ -26,8 +26,10 @@ FUZZIFY eficiencia			// Fuzzify input variable 'food': { 'rancid', 'delicious' }
 END_FUZZIFY
 
 DEFUZZIFY valeapena			// Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
-	TERM sim := (0,1) (4,1) (8,0);
-	TERM nao := (8,0) (12,1) (16,1);
+	TERM recomendado := (0,1) (2,1) (6,0);
+	TERM levementerecomendado := (2,0) (6,1) (10,0);
+        TERM naorecomendado := (6,0) (10,1) (14,0);
+        TERM naovaleapena := (10,0) (14,1)(16,1);
 	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
 	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
 END_DEFUZZIFY
@@ -37,7 +39,7 @@ RULEBLOCK No1
 	ACT : MIN;			// Use 'min' activation method
 	ACCU : MAX;			// Use 'max' accumulation method
 
-	RULE 1 : IF custo IS mb AND eficiencia IS livre THEN valeapena IS sim;
+	RULE 1 : IF custo IS mb AND eficiencia IS livre THEN valeapena IS sugerido;
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
