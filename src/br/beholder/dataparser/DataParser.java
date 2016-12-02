@@ -7,11 +7,8 @@ package br.beholder.dataparser;
 
 import br.beholder.csvparser.CSVParser;
 import br.beholder.filecontrol.SimpleFileReader;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 
 /**
  *
@@ -30,14 +27,18 @@ public class DataParser {
         return dataParser;
     }
     
-    private String efficienceTransform(File f){
+    public static void main(String[] args) {
+        
+    }
+    
+    public String efficienceTransform(File f){
         return efficienceTransform(SimpleFileReader.getInstance().fileToString(f));
     }
-    private String efficienceTransform(String f){
-        f = f.replace("levementelento", "1,");
-        f = f.replace("lento", "2,");
-        f = f.replace("livre", "0,");
-        f = f.replace("parado", "3,");
+    public String efficienceTransform(String f){
+        f = f.replace("levemente lento", "1");
+        f = f.replace("lento", "2");
+        f = f.replace("livre", "0");
+        f = f.replace("parado", "3");
         return f;
     }
 }

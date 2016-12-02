@@ -32,7 +32,7 @@ public class CSVParser {
         return csvp;
     }
     
-    private List<String> getList(String f, String separator){
+    public List<String> getList(String f, String separator){
         List<String> list = new ArrayList<>();
         f = f.replaceAll("\n", separator);
         String[] everything = f.split(separator);
@@ -42,7 +42,7 @@ public class CSVParser {
         
         return list;
     }
-    private List<String> getList(File f, String separator){
+    public List<String> getList(File f, String separator){
         return getList(SimpleFileReader.getInstance().fileToString(f), separator);
     }
 }

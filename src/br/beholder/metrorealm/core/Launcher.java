@@ -6,11 +6,15 @@
 package br.beholder.metrorealm.core;
 
 import br.beholder.csvparser.CSVParser;
+import br.beholder.dataparser.DataParser;
+import static br.beholder.dataparser.DataParser.getInstance;
 import java.io.File;
+import java.util.List;
 import java.util.Stack;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
+import net.sourceforge.jFuzzyLogic.rule.RuleBlock;
 
 /**
  *
@@ -23,17 +27,24 @@ public class Launcher {
      */
     public static void main(String[] args) {
         File file = new File("src/br/beholder/metrorealm/resources/tipper.flc");
+        File input = new File("src/br/beholder/resources/teste.txt");
+        String data = DataParser.getInstance().efficienceTransform(input);
+        List<String> csv = CSVParser.getInstance().getList(data, ",");
         
-        CSVParser csvp = CSVParser.getInstance();
-        
-        
-        System.out.println(file.getAbsolutePath());
         FIS fis = FIS.load(file.getPath(),true);
         
         if (fis == null){
             System.err.println("Eitaaa");
         }
         
+        FunctionBlock fb = fis.getFunctionBlock(null);
+        for (String dado : csv) {
+            fb.setVariable("custo", 7.66);
+            fb.setVariable("eficiencia", Integer.parseInt(dado));
+            fb.evaluate();
+            JFuzzyChart.get().chart(fis);
+        }
+                
         JFuzzyChart.get().chart(fis);
         
     }
