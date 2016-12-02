@@ -42,7 +42,6 @@ public class Launcher {
             fb.setVariable("custo", 7.66);
             fb.setVariable("eficiencia", Integer.parseInt(dado));
             fb.evaluate();
-            JFuzzyChart.get().chart(fis);
         }
                 
         JFuzzyChart.get().chart(fis);
