@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alisson/Documents/Github/MetroRealm/src/br/beholder/Launcher.java</file>
             <file>file:/C:/Users/Alisson/Documents/Github/MetroRealm/src/br/beholder/metrorealm/ui/MainWindow.java</file>
-            <file>file:/C:/Users/Alisson/Documents/Github/MetroRealm/src/br/beholder/metrorealm/core/FuzzyCalculator.java</file>
+            <file>file:/C:/Users/Alisson/Documents/Github/MetroRealm/src/br/beholder/metrorealm/ui/utils/ColorController.java</file>
+            <file>file:/C:/Users/Alisson/Documents/Github/MetroRealm/src/br/beholder/metrorealm/ui/swing/webLaf/ImageJPanel.java</file>
         </group>
     </open-files>
 </project-private>
