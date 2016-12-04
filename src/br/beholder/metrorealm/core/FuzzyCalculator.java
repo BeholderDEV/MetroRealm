@@ -20,7 +20,11 @@ import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
  * @author Alisson
  */
 public class FuzzyCalculator {
+    
     public Double calculate(File rules, File input,File custo){
+        return calculate(rules, input, custo, false);
+    }
+    public Double calculate(File rules, File input,File custo, boolean full){
         String data = DataParser.getInstance().efficienceTransform(input);
         List<String> csv = CSVParser.getInstance().getList(data, ",");
         List<Double> values = new ArrayList<>();
@@ -46,8 +50,12 @@ public class FuzzyCalculator {
         media = media/(double)values.size();
         System.out.println("media: "+media);
         fb.getVariable("valeapena").setValue(media);
+        if(full){
+            JFuzzyChart.get().chart(fb);
+        }else{
+            JFuzzyChart.get().chart(fb.getVariable("valeapena"),true);
+        }
         
-        JFuzzyChart.get().chart(fb.getVariable("valeapena"),true);
         return media;
     }
 }

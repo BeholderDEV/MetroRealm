@@ -8,6 +8,9 @@ package br.beholder.metrorealm.ui;
 import br.beholder.filecontrol.FilePicker;
 import br.beholder.filecontrol.SimpleFileReader;
 import br.beholder.metrorealm.core.FuzzyCalculator;
+import br.beholder.metrorealm.ui.swing.webLaf.WeblafUtils;
+import br.beholder.metrorealm.ui.utils.ColorController;
+import java.awt.Dimension;
 import java.io.File;
 
 /**
@@ -18,14 +21,58 @@ public class MainWindow extends javax.swing.JFrame {
     File custo;
     File input;
     File rules;
+    File testcusto;
+    File testinput;
+    File testrules;
     FuzzyCalculator calculator;
     
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        WeblafUtils.instalaWeblaf();
         initComponents();
+        setSize(new Dimension(800, 600));
         calculator = new FuzzyCalculator();
+        testrules= new File("./src/br/beholder/metrorealm/resources/tipper.flc");
+        testinput= new File("./amostras/itajai-navegantes/br/eficiencia.txt");
+        testcusto= new File("./amostras/itajai-navegantes/br/custo.txt");
+        
+        custo = testcusto;
+        custoname.setText(custo.getPath());
+        custotext.setText(SimpleFileReader.getInstance().fileToString(custo));
+        
+        rules = testrules;
+        rulesnome.setText(rules.getPath());
+        rulesTExt.setText(SimpleFileReader.getInstance().fileToString(rules));
+        
+        input = testinput;
+        inputnome.setText(input.getPath());
+        inputtext.setText(SimpleFileReader.getInstance().fileToString(input));
+        
+        
+        if(WeblafUtils.weblafEstaInstalado()){
+            WeblafUtils.configuraWebLaf(media);
+            WeblafUtils.configuraWebLaf(custotext);
+            WeblafUtils.configuraWebLaf(inputtext);
+            WeblafUtils.configuraWebLaf(rulesTExt);
+            WeblafUtils.configuraWebLaf(custoname);
+            WeblafUtils.configuraWebLaf(inputnome);
+            WeblafUtils.configuraWebLaf(rulesnome);
+            
+            WeblafUtils.configuraWebLaf(jScrollPane1);
+            WeblafUtils.configuraWebLaf(jScrollPane2);
+            WeblafUtils.configuraWebLaf(jScrollPane3);
+
+            WeblafUtils.configurarBotao(calcular);
+            WeblafUtils.configurarBotao(custoButton);
+            WeblafUtils.configurarBotao(inputButton);
+            WeblafUtils.configurarBotao(rulesButton);
+            WeblafUtils.configurarBotao(webButton1);
+            
+            jPanel6.setBackground(ColorController.COR_PRINCIPAL);
+        }
+        
     }
 
     /**
@@ -37,55 +84,50 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel6 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        webButton1 = new com.alee.laf.button.WebButton();
+        jPanel2 = new javax.swing.JPanel();
+        calcular = new com.alee.laf.button.WebButton();
+        media = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
         custoButton = new com.alee.laf.button.WebButton();
+        custoname = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         custotext = new javax.swing.JTextArea();
+        jPanel9 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         inputtext = new javax.swing.JTextArea();
+        jPanel10 = new javax.swing.JPanel();
+        inputnome = new javax.swing.JTextField();
+        inputButton = new com.alee.laf.button.WebButton();
+        jPanel11 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         rulesTExt = new javax.swing.JTextArea();
-        inputButton = new com.alee.laf.button.WebButton();
-        rulesButton = new com.alee.laf.button.WebButton();
-        calcular = new com.alee.laf.button.WebButton();
-        custoname = new javax.swing.JTextField();
-        inputnome = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
         rulesnome = new javax.swing.JTextField();
-        media = new javax.swing.JTextField();
+        rulesButton = new com.alee.laf.button.WebButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        custoButton.setText("custo");
-        custoButton.addActionListener(new java.awt.event.ActionListener() {
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new java.awt.BorderLayout(5, 0));
+
+        webButton1.setText("testar");
+        webButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custoButtonActionPerformed(evt);
+                webButton1ActionPerformed(evt);
             }
         });
+        jPanel4.add(webButton1, java.awt.BorderLayout.LINE_START);
 
-        custotext.setColumns(20);
-        custotext.setRows(5);
-        jScrollPane1.setViewportView(custotext);
-
-        inputtext.setColumns(20);
-        inputtext.setRows(5);
-        jScrollPane2.setViewportView(inputtext);
-
-        rulesTExt.setColumns(20);
-        rulesTExt.setRows(5);
-        jScrollPane3.setViewportView(rulesTExt);
-
-        inputButton.setText("input");
-        inputButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputButtonActionPerformed(evt);
-            }
-        });
-
-        rulesButton.setText("rules");
-        rulesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rulesButtonActionPerformed(evt);
-            }
-        });
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.BorderLayout(0, 5));
 
         calcular.setText("Calcular");
         calcular.addActionListener(new java.awt.event.ActionListener() {
@@ -93,66 +135,103 @@ public class MainWindow extends javax.swing.JFrame {
                 calcularActionPerformed(evt);
             }
         });
-
-        custoname.setText("jTextField1");
-
-        inputnome.setText("jTextField2");
-
-        rulesnome.setText("jTextField3");
+        jPanel2.add(calcular, java.awt.BorderLayout.CENTER);
 
         media.setText("jTextField1");
+        jPanel2.add(media, java.awt.BorderLayout.NORTH);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(media)
-                    .addComponent(calcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(custoname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(custoButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(inputButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inputnome, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                            .addComponent(rulesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rulesnome))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(custoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rulesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(custoname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rulesnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(media, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jPanel4.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jPanel6.add(jPanel4, java.awt.BorderLayout.SOUTH);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new java.awt.BorderLayout(10, 0));
+
+        jPanel7.setOpaque(false);
+        jPanel7.setLayout(new java.awt.BorderLayout(0, 5));
+
+        jPanel8.setOpaque(false);
+        jPanel8.setLayout(new java.awt.BorderLayout(0, 5));
+
+        custoButton.setText("custo");
+        custoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custoButtonActionPerformed(evt);
+            }
+        });
+        jPanel8.add(custoButton, java.awt.BorderLayout.NORTH);
+
+        custoname.setText("jTextField1");
+        jPanel8.add(custoname, java.awt.BorderLayout.CENTER);
+
+        jPanel7.add(jPanel8, java.awt.BorderLayout.NORTH);
+
+        custotext.setColumns(20);
+        custotext.setRows(5);
+        jScrollPane1.setViewportView(custotext);
+
+        jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel7, java.awt.BorderLayout.WEST);
+
+        jPanel9.setOpaque(false);
+        jPanel9.setLayout(new java.awt.BorderLayout(0, 5));
+
+        inputtext.setColumns(20);
+        inputtext.setRows(5);
+        jScrollPane2.setViewportView(inputtext);
+
+        jPanel9.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel10.setOpaque(false);
+        jPanel10.setLayout(new java.awt.BorderLayout(0, 5));
+
+        inputnome.setText("jTextField2");
+        jPanel10.add(inputnome, java.awt.BorderLayout.CENTER);
+
+        inputButton.setText("input");
+        inputButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputButtonActionPerformed(evt);
+            }
+        });
+        jPanel10.add(inputButton, java.awt.BorderLayout.PAGE_START);
+
+        jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
+
+        jPanel3.add(jPanel9, java.awt.BorderLayout.CENTER);
+
+        jPanel11.setOpaque(false);
+        jPanel11.setLayout(new java.awt.BorderLayout(0, 5));
+
+        rulesTExt.setColumns(20);
+        rulesTExt.setRows(5);
+        jScrollPane3.setViewportView(rulesTExt);
+
+        jPanel11.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPanel12.setOpaque(false);
+        jPanel12.setLayout(new java.awt.BorderLayout(0, 5));
+
+        rulesnome.setText("jTextField3");
+        jPanel12.add(rulesnome, java.awt.BorderLayout.CENTER);
+
+        rulesButton.setText("rules");
+        rulesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rulesButtonActionPerformed(evt);
+            }
+        });
+        jPanel12.add(rulesButton, java.awt.BorderLayout.PAGE_START);
+
+        jPanel11.add(jPanel12, java.awt.BorderLayout.NORTH);
+
+        jPanel3.add(jPanel11, java.awt.BorderLayout.EAST);
+
+        jPanel6.add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,6 +257,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularActionPerformed
         media.setText(calculator.calculate(rules, input, custo)+"");
     }//GEN-LAST:event_calcularActionPerformed
+
+    private void webButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton1ActionPerformed
+        media.setText(calculator.calculate(testrules, testinput, testcusto,true)+"");
+    }//GEN-LAST:event_webButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +305,16 @@ public class MainWindow extends javax.swing.JFrame {
     private com.alee.laf.button.WebButton inputButton;
     private javax.swing.JTextField inputnome;
     private javax.swing.JTextArea inputtext;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -229,5 +322,6 @@ public class MainWindow extends javax.swing.JFrame {
     private com.alee.laf.button.WebButton rulesButton;
     private javax.swing.JTextArea rulesTExt;
     private javax.swing.JTextField rulesnome;
+    private com.alee.laf.button.WebButton webButton1;
     // End of variables declaration//GEN-END:variables
 }
