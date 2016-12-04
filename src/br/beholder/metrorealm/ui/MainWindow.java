@@ -81,6 +81,7 @@ public class MainWindow extends javax.swing.JFrame {
             WeblafUtils.configurarBotao(rulesButton);
             WeblafUtils.configurarBotao(webButton1);
             
+            jLabel2.setForeground(ColorController.COR_LETRA);
         }
         
     }
@@ -119,10 +120,14 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         calcular = new com.alee.laf.button.WebButton();
         media = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Similação Fuzzy de Rotas entre Cidades");
 
+        imageJPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         imageJPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -240,6 +245,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         imageJPanel1.add(jPanel4, java.awt.BorderLayout.SOUTH);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/beholder/metrorealm/resources/van.png"))); // NOI18N
+        jPanel1.add(jLabel1, java.awt.BorderLayout.WEST);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Calculadora de Mobilidade");
+        jPanel1.add(jLabel2, java.awt.BorderLayout.CENTER);
+
+        imageJPanel1.add(jPanel1, java.awt.BorderLayout.NORTH);
+
         getContentPane().add(imageJPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -327,6 +346,9 @@ public class MainWindow extends javax.swing.JFrame {
     private com.alee.laf.button.WebButton inputButton;
     private javax.swing.JTextField inputnome;
     private javax.swing.JTextArea inputtext;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;

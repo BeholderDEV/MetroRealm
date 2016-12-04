@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author LITE
  */
 public final class ColorController {
-    static int alpha = 240;
+    static int alpha = 255;
     private static Color[] getDefaultTheme(){
         return new Color[]{
                 new Color(51,51,51),
