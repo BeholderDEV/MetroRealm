@@ -11,7 +11,12 @@ import br.beholder.metrorealm.core.FuzzyCalculator;
 import br.beholder.metrorealm.ui.swing.webLaf.WeblafUtils;
 import br.beholder.metrorealm.ui.utils.ColorController;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -32,6 +37,11 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         WeblafUtils.instalaWeblaf();
         initComponents();
+        try {
+            imageJPanel1.setImage(ImageIO.read(new File("./src/br/beholder/resources/wall.jpg")));
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setSize(new Dimension(800, 600));
         calculator = new FuzzyCalculator();
         testrules= new File("./src/br/beholder/metrorealm/resources/tipper.flc");
@@ -70,7 +80,6 @@ public class MainWindow extends javax.swing.JFrame {
             WeblafUtils.configurarBotao(rulesButton);
             WeblafUtils.configurarBotao(webButton1);
             
-            jPanel6.setBackground(ColorController.COR_PRINCIPAL);
         }
         
     }
@@ -84,12 +93,7 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel6 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        webButton1 = new com.alee.laf.button.WebButton();
-        jPanel2 = new javax.swing.JPanel();
-        calcular = new com.alee.laf.button.WebButton();
-        media = new javax.swing.JTextField();
+        imageJPanel1 = new br.beholder.metrorealm.ui.swing.webLaf.ImageJPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -109,40 +113,15 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         rulesnome = new javax.swing.JTextField();
         rulesButton = new com.alee.laf.button.WebButton();
+        jPanel4 = new javax.swing.JPanel();
+        webButton1 = new com.alee.laf.button.WebButton();
+        jPanel2 = new javax.swing.JPanel();
+        calcular = new com.alee.laf.button.WebButton();
+        media = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel6.setLayout(new java.awt.BorderLayout());
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jPanel4.setOpaque(false);
-        jPanel4.setLayout(new java.awt.BorderLayout(5, 0));
-
-        webButton1.setText("testar");
-        webButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                webButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(webButton1, java.awt.BorderLayout.LINE_START);
-
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.BorderLayout(0, 5));
-
-        calcular.setText("Calcular");
-        calcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calcularActionPerformed(evt);
-            }
-        });
-        jPanel2.add(calcular, java.awt.BorderLayout.CENTER);
-
-        media.setText("jTextField1");
-        jPanel2.add(media, java.awt.BorderLayout.NORTH);
-
-        jPanel4.add(jPanel2, java.awt.BorderLayout.CENTER);
-
-        jPanel6.add(jPanel4, java.awt.BorderLayout.SOUTH);
+        imageJPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jPanel3.setOpaque(false);
@@ -229,9 +208,39 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3.add(jPanel11, java.awt.BorderLayout.EAST);
 
-        jPanel6.add(jPanel3, java.awt.BorderLayout.CENTER);
+        imageJPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
+        jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new java.awt.BorderLayout(5, 0));
+
+        webButton1.setText("testar");
+        webButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(webButton1, java.awt.BorderLayout.LINE_START);
+
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.BorderLayout(0, 5));
+
+        calcular.setText("Calcular");
+        calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcularActionPerformed(evt);
+            }
+        });
+        jPanel2.add(calcular, java.awt.BorderLayout.CENTER);
+
+        media.setText("jTextField1");
+        jPanel2.add(media, java.awt.BorderLayout.NORTH);
+
+        jPanel4.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        imageJPanel1.add(jPanel4, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(imageJPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -302,6 +311,7 @@ public class MainWindow extends javax.swing.JFrame {
     private com.alee.laf.button.WebButton custoButton;
     private javax.swing.JTextField custoname;
     private javax.swing.JTextArea custotext;
+    private br.beholder.metrorealm.ui.swing.webLaf.ImageJPanel imageJPanel1;
     private com.alee.laf.button.WebButton inputButton;
     private javax.swing.JTextField inputnome;
     private javax.swing.JTextArea inputtext;
@@ -311,7 +321,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

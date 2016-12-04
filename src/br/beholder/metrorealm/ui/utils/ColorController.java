@@ -50,18 +50,20 @@ public final class ColorController {
         return new Color[]{
                 new Color(251,251,251),
                 
-                new Color(10,100,100),
                 new Color(0,50,50), 
+                new Color(107,128,255), 
                 
-                new Color(0,30,30),               
-                new Color(0,50,50), 
-                new Color(20,70,70), 
+                               
+                new Color(114,232,194),
+                new Color(232,116,92), 
                 
+                
+                new Color(255,215,109),
                 new Color(241,67,60)
             };
     }
     
-    private static final Color[] THEME= getFlatTheme();
+    private static final Color[] THEME= getASHTheme();
     public static final Color COR_LETRA = THEME[0];
     public static final Color COR_DESTAQUE = THEME[1];
     public static final Color COR_PRINCIPAL = THEME[2];
