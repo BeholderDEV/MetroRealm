@@ -14,9 +14,10 @@ import javax.swing.JFileChooser;
  */
 public class FilePicker {
     static String current=".";
+    
     public static File chooseFile(){
         JFileChooser chooser = new JFileChooser(current);
-        File file= new File(".");
+        File file= null;
         int returnVal = chooser.showOpenDialog(null);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {

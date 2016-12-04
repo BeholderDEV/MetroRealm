@@ -42,7 +42,8 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        setSize(new Dimension(800, 600));
+        setSize(new Dimension(1200, 720));
+        setLocationRelativeTo(null);
         calculator = new FuzzyCalculator();
         testrules= new File("./src/br/beholder/metrorealm/resources/tipper.flc");
         testinput= new File("./amostras/itajai-navegantes/br/eficiencia.txt");
@@ -120,6 +121,7 @@ public class MainWindow extends javax.swing.JFrame {
         media = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Similação Fuzzy de Rotas entre Cidades");
 
         imageJPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -232,8 +234,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(calcular, java.awt.BorderLayout.CENTER);
-
-        media.setText("jTextField1");
         jPanel2.add(media, java.awt.BorderLayout.NORTH);
 
         jPanel4.add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -246,19 +246,31 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void custoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custoButtonActionPerformed
-        custo = FilePicker.chooseFile();
+        File buffer = FilePicker.chooseFile();;
+        if(buffer == null){
+            return;
+        }
+        custo = buffer;
         custoname.setText(custo.getPath());
         custotext.setText(SimpleFileReader.getInstance().fileToString(custo));
     }//GEN-LAST:event_custoButtonActionPerformed
 
     private void inputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputButtonActionPerformed
-        input = FilePicker.chooseFile();
+        File buffer = FilePicker.chooseFile();;
+        if(buffer == null){
+            return;
+        }
+        input = buffer;
         inputnome.setText(input.getPath());
         inputtext.setText(SimpleFileReader.getInstance().fileToString(input));
     }//GEN-LAST:event_inputButtonActionPerformed
 
     private void rulesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rulesButtonActionPerformed
-        rules = FilePicker.chooseFile();
+        File buffer = FilePicker.chooseFile();;
+        if(buffer == null){
+            return;
+        }
+        rules = buffer;
         rulesnome.setText(rules.getPath());
         rulesTExt.setText(SimpleFileReader.getInstance().fileToString(rules));
     }//GEN-LAST:event_rulesButtonActionPerformed
