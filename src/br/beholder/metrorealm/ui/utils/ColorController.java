@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author LITE
  */
 public final class ColorController {
-    static int alpha = 255;
+    static int alpha = 230;
     private static Color[] getDefaultTheme(){
         return new Color[]{
                 new Color(51,51,51),
@@ -37,28 +37,28 @@ public final class ColorController {
     }
     private static Color[] getASHTheme(){
         return new Color[]{
-                new Color(251,251,251, alpha),
-                new Color(58,70,76, alpha),
-                new Color(38,50,56, alpha),
-                new Color(18,30,36, alpha),
-                new Color(38,50,56, alpha),
-                new Color(68,80,86, alpha),
-                new Color(241,67,60, alpha),
+                new Color(251,251,251),
+                new Color(58,70,76),
+                new Color(38,50,56),
+                new Color(18,30,36),
+                new Color(38,50,56),
+                new Color(68,80,86),
+                new Color(241,67,60),
             };
     }
     private static Color[] getFlatTheme(){
         return new Color[]{
-                new Color(251,251,251, alpha),
+                new Color(30,30,30, alpha),
+//                new Color(58,70,76, alpha),
+                new Color(242,163,181, alpha),
+                new Color(38,50,56, alpha),
                 
-                new Color(107,128,255, alpha), 
+                new Color(236,17,68, alpha),
+                new Color(160,59,83, alpha),
                 
-                               
-                new Color(114,232,194, alpha),
-                new Color(232,116,92, alpha),
+                new Color(165,14,54, alpha),
                 
-                
-                new Color(255,215,109, alpha),
-                new Color(241,67,60, alpha)
+                new Color(241,67,60, alpha),
             };
     }
     
