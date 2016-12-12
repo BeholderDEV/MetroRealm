@@ -42,6 +42,7 @@ public class FuzzyCalculator {
             fb.evaluate();
             fb.getVariable("valeapena").defuzzify();
             values.add(fb.getVariable("valeapena").getValue());
+            System.out.println(dado);
         }
         Double media=0.0;
         for (Double value: values) {
