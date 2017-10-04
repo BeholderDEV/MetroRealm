@@ -46,10 +46,10 @@ public class FuzzyCalculator {
 //            System.out.println(dado);
 //        }
         
-        int porcaoLivre  = Integer.parseInt(csv.get(0));
-        int porcaoLLivre = Integer.parseInt(csv.get(1));
-        int porcaoLLenta = Integer.parseInt(csv.get(2));
-        int porcaoLenta  = Integer.parseInt(csv.get(3));
+        int porcaoLivre  = Integer.parseInt(csv.get(3));
+        int porcaoLLivre = Integer.parseInt(csv.get(2));
+        int porcaoLLenta = Integer.parseInt(csv.get(1));
+        int porcaoLenta  = Integer.parseInt(csv.get(0));
 
         //mediaponderada é igual a cada porcentagem multiplicada pelo seu valor nas regras fuzzy, depois dividido pelo total.
         double mediaPonderada = porcaoLLivre+porcaoLLenta*2+porcaoLenta*3;
