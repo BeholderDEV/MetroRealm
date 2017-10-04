@@ -25,7 +25,8 @@ public class FuzzyCalculator {
         return calculate(rules, input, custo, false);
     }
     public Double calculate(File rules, File input,File custo, boolean full){
-        String data = DataParser.getInstance().efficienceTransform(input);
+//        String data = DataParser.getInstance().efficienceTransform(input);
+        String data = SimpleFileReader.getInstance().fileToString(input);
         List<String> csv = CSVParser.getInstance().getList(data, ",");
         List<Double> values = new ArrayList<>();
         Double valorPreco = Double.parseDouble(SimpleFileReader.getInstance().fileToString(custo));
@@ -36,27 +37,45 @@ public class FuzzyCalculator {
         }
         
         FunctionBlock fb = fis.getFunctionBlock(null);
-        for (String dado : csv) {
-            fb.setVariable("custo", valorPreco);
-            fb.setVariable("eficiencia", Integer.parseInt(dado));
-            fb.evaluate();
-            fb.getVariable("valeapena").defuzzify();
-            values.add(fb.getVariable("valeapena").getValue());
-            System.out.println(dado);
-        }
-        Double media=0.0;
-        for (Double value: values) {
-            media+=value;
-        }
-        media = media/(double)values.size();
-        System.out.println("media: "+media);
-        fb.getVariable("valeapena").setValue(media);
+//        for (String dado : csv) {
+//            fb.setVariable("custo", valorPreco);
+//            fb.setVariable("eficiencia", Integer.parseInt(dado));
+//            fb.evaluate();
+//            fb.getVariable("valeapena").defuzzify();
+//            values.add(fb.getVariable("valeapena").getValue());
+//            System.out.println(dado);
+//        }
+        
+        int porcaoLivre  = Integer.parseInt(csv.get(0));
+        int porcaoLLivre = Integer.parseInt(csv.get(1));
+        int porcaoLLenta = Integer.parseInt(csv.get(2));
+        int porcaoLenta  = Integer.parseInt(csv.get(3));
+
+        //mediaponderada é igual a cada porcentagem multiplicada pelo seu valor nas regras fuzzy, depois dividido pelo total.
+        double mediaPonderada = porcaoLLivre+porcaoLLenta*2+porcaoLenta*3;
+        mediaPonderada = mediaPonderada/100;
+        
+        fb.setVariable("custo", valorPreco);
+        fb.setVariable("eficiencia", mediaPonderada);
+        fb.evaluate();
+        fb.getVariable("valeapena").defuzzify();
+//        values.add(fb.getVariable("valeapena").getValue());
+//        System.out.println(mediaPonderada);
+
+//        Double media=0.0;
+//        for (Double value: values) {
+//            media+=value;
+//        }
+//        media = media/(double)values.size
+        System.out.println("media ponderada: "+mediaPonderada);
+        System.out.println("valeapena: "+fb.getVariable("valeapena").getValue());
+//        fb.getVariable("valeapena").setValue(media);
         if(full){
             JFuzzyChart.get().chart(fb);
         }else{
             JFuzzyChart.get().chart(fb.getVariable("valeapena"),true);
         }
         
-        return media;
+        return fb.getVariable("valeapena").getValue();
     }
 }
